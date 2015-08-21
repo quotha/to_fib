@@ -4,6 +4,10 @@ module ToFib
       fibonacci(self).reverse_each.take(2).min {|a, b| (self-a).abs <=> (self-b).abs}
     end
     
+    def is_fib?
+      self == self.to_fib
+    end
+    
     private
     
     def fibonacci(max=Float::INFINITY)
