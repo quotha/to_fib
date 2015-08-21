@@ -1,7 +1,12 @@
 module ToFib
-  module ObjectExtension
+  module ObjectExtension    
     def to_fib
-      fibonacci(self).reverse_each.take(2).min {|a, b| (self-a).abs <=> (self-b).abs}
+      f, neg = fibonacci(self.abs), []
+      if self < 0
+        f.each_with_index {|i, index| neg << -i if index.even?}
+        f = neg
+      end
+      f.reverse_each.take(2).min {|a, b| (self-a).abs <=> (self-b).abs}
     end
     
     def is_fib?
