@@ -11,7 +11,7 @@ class TestToFib < BaseTest
   end
   
   def test_20
-    assert_equal 21, 21.to_fib
+    assert_equal 21, 20.to_fib
   end
   
   def test_40
