@@ -1,12 +1,12 @@
 module ToFib
   module ObjectExtension    
     def to_fib
-      f, neg = fibonacci(self.abs), []
+      list, nega_list = fibonacci(self.abs), []
       if self < 0
-        f.each_with_index {|i, index| neg << -i if index.even?}
-        f = neg
+        list.each_with_index {|fib, index| nega_list << -fib if index.even?}
+        list = nega_list
       end
-      f.reverse_each.take(2).min {|a, b| (self-a).abs <=> (self-b).abs}
+      list.reverse_each.take(2).min {|a, b| (self-a).abs <=> (self-b).abs}
     end
     
     def is_fib?
@@ -17,13 +17,12 @@ module ToFib
     
     def fibonacci(max=Float::INFINITY)
       return to_enum(__method__, max) unless block_given?
-      yield previous = 0
-      while (i ||= 1) <= max
-        yield i
-        i, previous = previous + i, i
+      yield previous_fib = 0
+      while (fib ||= 1) <= max
+        yield fib
+        fib, previous_fib = previous_fib + fib, fib
       end
-      yield i
-      previous
+      yield fib
     end
     
   end
