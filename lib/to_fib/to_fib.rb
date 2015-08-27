@@ -2,10 +2,7 @@ module ToFib
   module ObjectExtension    
     def to_fib
       list, nega_list = fibonacci(self.abs), []
-      if self < 0
-        list.each_with_index {|fib, index| nega_list << -fib if index.even?}
-        list = nega_list
-      end
+      __, list = list.each_with_index {|fib, index| nega_list << -fib if index.even?}, nega_list if self < 0
       list.reverse_each.take(2).min {|a, b| (self-a).abs <=> (self-b).abs}
     end
     
@@ -24,7 +21,6 @@ module ToFib
       end
       yield fib
     end
-    
   end
 end
 
